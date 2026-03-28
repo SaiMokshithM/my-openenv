@@ -1,0 +1,32 @@
+name: incident-triage-openenv
+version: 0.1.0
+description: |
+  Real-world environment for IT incident triage. Agents classify incoming support
+  tickets, assign priority and ownership, and decide escalation actions under SLA pressure.
+entrypoint: src.environment:IncidentTriageEnv
+api:
+  methods:
+    - reset(task_id: str) -> EnvironmentState
+    - state() -> EnvironmentState
+    - step(action: TriageAction) -> StepResult
+models:
+  state: src.models:EnvironmentState
+  action: src.models:TriageAction
+  step_result: src.models:StepResult
+tasks:
+  - id: easy
+    difficulty: easy
+    grader: deterministic
+  - id: medium
+    difficulty: medium
+    grader: deterministic
+  - id: hard
+    difficulty: hard
+    grader: deterministic
+baseline:
+  command: python baseline.py
+container:
+  dockerfile: Dockerfile
+hf_spaces:
+  sdk: docker
+  app_port: 7860
