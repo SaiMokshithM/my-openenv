@@ -3,8 +3,8 @@ title: OpenEnv Incident Triage
 emoji: 🚨
 colorFrom: blue
 colorTo: red
-sdk: docker
-app_port: 7860
+sdk: gradio
+app_file: app.py
 pinned: false
 ---
 # Incident Triage OpenEnv
